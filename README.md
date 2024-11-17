@@ -20,13 +20,19 @@ This is the Godot project files for the **(Not a) Strict Jam 3** game jam!
 
 - Flying ships
 
-## Setting
-
 -
+
+## Setting
 
 - A series of flat and open arenas connected by various pathways and obstacles
 
 -
+
+## Development Schedule
+
+Week 1 - Develop game
+
+Week 2 - Polish game
 
 Contributors:
 
