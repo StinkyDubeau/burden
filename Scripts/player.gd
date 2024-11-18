@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 ## Variable Initialization
 var camera_rotate_speed = Vector2.ZERO
+var grabbed_object = null
 
 ## Constants
 const MOVE_ACCELS = Vector3(40.0, 40.0, 40.0)
@@ -23,6 +24,7 @@ var DEADZONES = 0.1
 var move_input = Vector3.ZERO
 var camera_rotation_input = Vector2.ZERO
 var jump_input = false
+var grab_input : set = grab_or_throw
 
 ## Other 
 
@@ -30,6 +32,8 @@ var jump_input = false
 @onready var actorMove = $ActorModules/ActorMove
 @onready var cameraPivot = $CameraPivot
 @onready var camera = $CameraPivot/Camera3D
+@onready var grabArea = $GrabArea
+@onready var meshInstance = $GrabArea/CollisionShape3D/MeshInstance3D
 
 ## Function Initialization
 
@@ -47,6 +51,9 @@ func _input(event: InputEvent) -> void:
 	
 	## Get other movement inputs
 	jump_input = Input.is_action_pressed("gameplay_jump")
+	
+	## Get other player action inputs
+	self.grab_input = Input.is_action_pressed("gameplay_grab")
 		
 	## Get camera inputs
 	camera_rotation_input = Input.get_vector("gameplay_camera_rotate_left", "gameplay_camera_rotate_right", "gameplay_camera_rotate_up", "gameplay_camera_rotate_down", DEADZONES)
@@ -79,9 +86,33 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	## Move grabbed object
+	if not grabbed_object == null:
+		grabbed_object.apply_central_impulse(grabbed_object.global_transform.origin.direction_to(global_transform.origin) * grabbed_object.global_transform.origin.distance_to(global_transform.origin))
+	
 ## Handle other movement types
 func _process(delta: float) -> void:
 	## Rotate the camera
 	camera_rotate_speed = camera_rotate_speed.move_toward(camera_rotation_input * CAMERA_ROTATE_SPEED_MAX, CAMERA_ROTATE_ACCEL * delta)
 	cameraPivot.rotation.x += camera_rotate_speed.y
 	cameraPivot.rotation.y += camera_rotate_speed.x
+	
+## A grab input has been detected, grab and or throw our object
+func grab_or_throw(state):
+	if not state == grab_input:
+		if grabArea.has_overlapping_areas():
+			for area in grabArea.get_overlapping_areas():
+				if area.is_in_group("Grabbable"):
+					grabbed_object = area.get_node("../")
+					break
+		
+		grab_input = state
+	
+	if grab_input:
+		meshInstance.scale.x = 0.5
+		meshInstance.scale.y = 0.5
+		meshInstance.scale.z = 0.5
+	else:
+		meshInstance.scale.x = 1.0
+		meshInstance.scale.y = 1.0
+		meshInstance.scale.z = 1.0

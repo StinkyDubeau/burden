@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://b4lrkpnpglril"]
+[gd_scene load_steps=10 format=4 uid="uid://b4lrkpnpglril"]
 
 [ext_resource type="PackedScene" uid="uid://bmcbstvmu7rwb" path="res://Actors/player.tscn" id="1_bnjco"]
 
@@ -30,6 +30,16 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ihrug"]
+radius = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_0x5at"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vvbg3"]
+radius = 1.0
+
 [node name="TestLevel" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -53,9 +63,31 @@ environment = SubResource("Environment_qrv6m")
 transform = Transform3D(0.907777, 0.216034, -0.359541, 0, 0.857167, 0.515038, 0.419452, -0.46754, 0.778117, 0, 0, 0)
 shadow_enabled = true
 
-[node name="SoftBody3D" type="SoftBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.58935, 1.3149, 0)
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97099, 1.8802, 0)
+
+[node name="SoftBody3D" type="SoftBody3D" parent="RigidBody3D"]
 mesh = SubResource("ArrayMesh_mcxfx")
+skeleton = NodePath("../..")
+parent_collision_ignore = NodePath("..")
+simulation_precision = 10
 total_mass = 20.01
 linear_stiffness = 1.0
 pressure_coefficient = 400.0
+pinned_points = [131]
+attachments/0/point_index = 131
+attachments/0/spatial_attachment_path = NodePath("../BoneAttachment3D")
+attachments/0/offset = Vector3(0, 1.46942, -0.056941)
+
+[node name="GrabArea" type="Area3D" parent="RigidBody3D" groups=["Grabbable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/GrabArea"]
+shape = SubResource("SphereShape3D_ihrug")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/GrabArea"]
+mesh = SubResource("SphereMesh_0x5at")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_vvbg3")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="RigidBody3D"]
