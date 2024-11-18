@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dmolav7v34qsx"
+path="res://.godot/imported/GarbageBag_01.obj-a588b944ada1b584485adc66cb23b10e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/GarbageBag_01.obj-a588b944ada1b584485adc66cb23b10e.mesh"]
+
+source_file="res://Meshes/Props/GarbageBag_01.obj"
+dest_files=["res://.godot/imported/GarbageBag_01.obj-a588b944ada1b584485adc66cb23b10e.mesh", "res://.godot/imported/GarbageBag_01.obj-a588b944ada1b584485adc66cb23b10e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
