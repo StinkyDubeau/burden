@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4lrkpnpglril"]
+
+[ext_resource type="PackedScene" uid="uid://bmcbstvmu7rwb" path="res://Actors/player.tscn" id="1_bnjco"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oggqu"]
+size = Vector2(10, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_v8rxy"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[sub_resource type="Environment" id="Environment_qrv6m"]
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_oggqu")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_v8rxy")
+
+[node name="Player" parent="." instance=ExtResource("1_bnjco")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00749576, -2.38419e-07, -0.00617069)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qrv6m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.907777, 0.216034, -0.359541, 0, 0.857167, 0.515038, 0.419452, -0.46754, 0.778117, 0, 0, 0)
+shadow_enabled = true
