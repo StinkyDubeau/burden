@@ -24,7 +24,7 @@ var move_input = Vector3.ZERO
 var camera_rotation_input = Vector2.ZERO
 var jump_input = false
 
-## Input
+## Other 
 
 ## Assets
 @onready var actorMove = $ActorModules/ActorMove
