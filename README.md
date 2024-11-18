@@ -4,6 +4,7 @@ This is the Godot project files for the **(Not a) Strict Jam 3** game jam!
 
 - Theme: Bullet Hell
 - Special Rule: One tool, many uses
+- Challenges: Time won't wait, Minimal UI, One life
 
 ## Player
 
