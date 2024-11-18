@@ -5,12 +5,16 @@ var camera_rotate_speed = Vector2.ZERO
 
 ## Constants
 const MOVE_ACCELS = Vector3(40.0,40.0,40.0)
-const MOVE_MAX_SPEEDS = Vector3(5.0,5.0,5.0)
-const JUMP_VELOCITY = 30.0
+const MOVE_MAX_SPEEDS = Vector3(7.0,7.0,7.0)
+const JUMP_VELOCITY = 15.0
+const JUMP_DUR_MAX = 0.15
+const JUMP_STOP_SLOWDOWN = 100.0
 const FRICT = Vector3(13.0,13.0,13.0)
 const DRAG = Vector3(4.0,4.0,4.0)
 const CAMERA_ROTATE_ACCEL = 1.0
 const CAMERA_ROTATE_SPEED_MAX = 0.1
+const GRAVITY_SPEED = 50.0
+const GRAVITY_MAX = -60.0
 
 ## Settings
 var DEADZONES = 0.1
@@ -19,6 +23,8 @@ var DEADZONES = 0.1
 var move_input = Vector3.ZERO
 var camera_rotation_input = Vector2.ZERO
 var jump_input = false
+
+## Input
 
 ## Assets
 @onready var actorMove = $ActorModules/ActorMove
@@ -40,7 +46,7 @@ func _input(event: InputEvent) -> void:
 		move_input.y = 0.0
 	
 	## Get other movement inputs
-	jump_input = Input.is_action_just_pressed("gameplay_jump")
+	jump_input = Input.is_action_pressed("gameplay_jump")
 		
 	## Get camera inputs
 	camera_rotation_input = Input.get_vector("gameplay_camera_rotate_left", "gameplay_camera_rotate_right", "gameplay_camera_rotate_up", "gameplay_camera_rotate_down",DEADZONES)
@@ -58,8 +64,18 @@ func _physics_process(delta: float) -> void:
 	## No drag on y velocity unless noclip is active
 	if GameFunctions.noclip == false:
 		current_frict.y = 0.0
+		
+	## Get our current accelerations
+	var current_accel = MOVE_ACCELS
 	
-	velocity = actorMove.move(move_input,cameraPivot.rotation.y,MOVE_ACCELS,current_frict,MOVE_MAX_SPEEDS,delta)
+	## Zero y accel if noclip is disabled
+	if GameFunctions.noclip == false:
+		current_accel.y = 0.0
+	
+	velocity = actorMove.move(velocity,move_input,cameraPivot.rotation.y,current_accel,current_frict,MOVE_MAX_SPEEDS,delta)
+	
+	## Apply jump and gravity
+	velocity.y = actorMove.jump_and_fall(velocity.y,jump_input,JUMP_VELOCITY,JUMP_STOP_SLOWDOWN,JUMP_DUR_MAX,GRAVITY_SPEED,GRAVITY_MAX,is_on_floor(),delta)
 	
 	move_and_slide()
 	
