@@ -22,7 +22,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_v8rxy")
 
 [node name="Player" parent="." instance=ExtResource("1_bnjco")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00749576, -2.38419e-07, -0.00617069)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0019592, 0.00746131, -0.00774425)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qrv6m")
