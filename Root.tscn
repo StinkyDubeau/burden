@@ -1,8 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://cj4hrpqs2ppra"]
+[gd_scene load_steps=5 format=3 uid="uid://cj4hrpqs2ppra"]
 
-[ext_resource type="Script" path="res://PlayerController.cs" id="1_o16sh"]
+[ext_resource type="PackedScene" uid="uid://bmcbstvmu7rwb" path="res://Actors/player.tscn" id="1_lhm6f"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4bcf5"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-script = ExtResource("1_o16sh")
+[sub_resource type="BoxShape3D" id="BoxShape3D_dl30j"]
+size = Vector3(2, 0.01, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qoygi"]
+
+[node name="Root" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Beach" type="StaticBody3D" parent="World"]
+transform = Transform3D(1455.63, 0, 0, 0, 1.00888, 0, 0, 0, 311.19, -5.74013, 0.191185, -23.8296)
+physics_material_override = SubResource("PhysicsMaterial_4bcf5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Beach"]
+shape = SubResource("BoxShape3D_dl30j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Beach"]
+mesh = SubResource("PlaneMesh_qoygi")
+
+[node name="Ocean" type="StaticBody3D" parent="World"]
+transform = Transform3D(10000, 0, 0, 0, 10000, 0, 0, 0, 1000, -0.0173721, -35.6032, 48.103)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ocean"]
+shape = SubResource("BoxShape3D_dl30j")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Ocean"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000559484, -0.173637, 0.307222)
+mesh = SubResource("PlaneMesh_qoygi")
+
+[node name="Player" parent="World" instance=ExtResource("1_lhm6f")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.688405, 0.417346, -0.593229, 0, 0.817879, 0.575391, 0.725326, -0.396102, 0.563032, 0, 0, 0)
