@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmcbstvmu7rwb"]
+[gd_scene load_steps=7 format=3 uid="uid://bmcbstvmu7rwb"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_u0xdq"]
 [ext_resource type="PackedScene" uid="uid://b8g7c0cga221g" path="res://Actors/Actor Modules/actor_move.tscn" id="2_lqpxy"]
@@ -6,6 +6,10 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bqkco"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r144e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dauc7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1bmem"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_u0xdq")
@@ -28,3 +32,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.992384, 0.123186, 0, -0.123186, 0.992384, 0, 1, 3)
 current = true
+
+[node name="GrabArea" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+shape = SubResource("SphereShape3D_dauc7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GrabArea/CollisionShape3D"]
+mesh = SubResource("SphereMesh_1bmem")
