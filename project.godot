@@ -23,6 +23,10 @@ GameFunctions="*res://Scripts/game_functions.gd"
 
 project/assembly_name="Burden"
 
+[global_group]
+
+Grabbable=""
+
 [input]
 
 gameplay_move_forwards={
@@ -85,6 +89,16 @@ gameplay_camera_rotate_down={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
 ]
 }
+gameplay_grab={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(166, 26),"global_position":Vector2(175, 72),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":5,"axis_value":1.0,"script":null)
+]
+}
+
+[layer_names]
+
+3d_physics/layer_1="Default"
 
 [physics]
 
