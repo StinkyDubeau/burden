@@ -34,8 +34,10 @@ Week 1 - Develop game
 
 Week 2 - Polish game
 
-Contributors:
+## Contributors:
 
 - Jonah Switzer
+
 - Jake Dubeau
+
 - Simon Dubeau
