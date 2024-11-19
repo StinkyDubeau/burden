@@ -49,12 +49,21 @@ size = 15.5547
 mesh = ExtResource("4_wvudy")
 surface_material_override/0 = SubResource("StandardMaterial3D_jqasq")
 
-[node name="GrabArea" type="Area3D" parent="."]
+[node name="GrabArea" type="Area3D" parent="CameraPivot"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1, 0)
 collision_layer = 0
 
+<<<<<<< HEAD
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+=======
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraPivot/GrabArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+>>>>>>> da19b869af5951b5db2be58507e4931fd99ee0c4
 shape = SubResource("SphereShape3D_dauc7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GrabArea/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraPivot/GrabArea/CollisionShape3D"]
 mesh = SubResource("SphereMesh_1bmem")
+
+[node name="ThrowDir" type="Marker3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -2)
