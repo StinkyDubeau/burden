@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://vsfwdm7i1c30" path="res://Prefabs/Clutter/shell.tscn" id="3_6l0lf"]
 [ext_resource type="PackedScene" uid="uid://h04numocjurh" path="res://Prefabs/Clutter/umbrella.tscn" id="4_w40kj"]
 [ext_resource type="PackedScene" uid="uid://bc4s0yy4lbbyo" path="res://Prefabs/Clutter/beer_bottle.tscn" id="5_k08qj"]
-[ext_resource type="Script" path="res://GreatGarbagePatch.cs" id="5_nmt27"]
+[ext_resource type="Script" path="res://Scripts/C#/GreatGarbagePatch.cs" id="5_nmt27"]
 [ext_resource type="PackedScene" uid="uid://bofpy8igng50d" path="res://Prefabs/trash_bag.tscn" id="6_2gmm8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qoygi"]

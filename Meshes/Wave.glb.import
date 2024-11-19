@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cpqkdbtnpy6tw"
-path="res://.godot/imported/Wave.glb-6b9d973531103becc84a508b70f36231.scn"
+path="res://.godot/imported/Wave.glb-573eeb5ab060cb8234f7b76ff9342ab7.scn"
 
 [deps]
 
-source_file="res://Objects/Wave.glb"
-dest_files=["res://.godot/imported/Wave.glb-6b9d973531103becc84a508b70f36231.scn"]
+source_file="res://Meshes/Wave.glb"
+dest_files=["res://.godot/imported/Wave.glb-573eeb5ab060cb8234f7b76ff9342ab7.scn"]
 
 [params]
 
