@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://d4lk6hkdpljah"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nvokb"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bbdjv"]
+
+[resource]
+albedo_color = Color(0.82, 0.77121, 0.6478, 1)
+roughness = 0.89
+roughness_texture = SubResource("NoiseTexture2D_bbdjv")
+roughness_texture_channel = 4
+normal_scale = 0.06
+normal_texture = SubResource("NoiseTexture2D_nvokb")
