@@ -1,6 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b4lrkpnpglril"]
 
 [ext_resource type="PackedScene" uid="uid://bmcbstvmu7rwb" path="res://Actors/player.tscn" id="1_bnjco"]
+
 [ext_resource type="PackedScene" uid="uid://bofpy8igng50d" path="res://Prefabs/trash_bag.tscn" id="2_tvps3"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oggqu"]
