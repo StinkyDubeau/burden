@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cj4hrpqs2ppra"]
+[gd_scene load_steps=15 format=3 uid="uid://cj4hrpqs2ppra"]
 
 [ext_resource type="PackedScene" uid="uid://bmcbstvmu7rwb" path="res://Actors/player.tscn" id="1_lhm6f"]
 [ext_resource type="Material" uid="uid://d4lk6hkdpljah" path="res://Materials/Sand.tres" id="1_tvlgj"]
 [ext_resource type="PackedScene" uid="uid://vsfwdm7i1c30" path="res://Prefabs/shell.tscn" id="3_6l0lf"]
 [ext_resource type="PackedScene" uid="uid://h04numocjurh" path="res://Prefabs/umbrella.tscn" id="4_w40kj"]
+[ext_resource type="Script" path="res://GreatGarbagePatch.cs" id="5_nmt27"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qoygi"]
 material = ExtResource("1_tvlgj")
@@ -13,6 +14,11 @@ size = Vector2(30, 5)
 data = PackedVector3Array(15, 0, 2.5, -15, 0, 2.5, 15, 0, -2.5, -15, 0, 2.5, -15, 0, -2.5, 15, 0, -2.5)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_syxty"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_tm1xa"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_yjcsd"]
+data = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mxnps"]
 
@@ -35,10 +41,10 @@ fog_enabled = true
 transform = Transform3D(0.688405, 0.417346, -0.593229, 0, 0.817879, 0.575391, 0.725326, -0.396102, 0.563032, 0, 0, 0)
 
 [node name="Player" parent="World" instance=ExtResource("1_lhm6f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0385513, 5.76855, 0.00110483)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0385513, 0.564147, 0.00110483)
 
 [node name="Beach" type="StaticBody3D" parent="World"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.0485293, 5.04057, -0.0293789)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.049, 0, -0.029)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Beach"]
 mesh = SubResource("PlaneMesh_qoygi")
@@ -53,6 +59,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0874872, 0.0717516, 0.0530
 shape = SubResource("WorldBoundaryShape3D_syxty")
 
 [node name="Clutter" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.10946, 0)
 
 [node name="Shell" parent="World/Clutter" instance=ExtResource("3_6l0lf")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -5.07531, 6.17965, -6.15343)
@@ -163,19 +170,29 @@ transform = Transform3D(-0.0687151, 0, -0.0726515, 0, 0.1, 0, 0.0726515, 0, -0.0
 transform = Transform3D(-0.0568289, 0, 0.0822829, 0, 0.1, 0, -0.0822829, 0, -0.0568289, 1.85123, 6.17965, 4.25451)
 
 [node name="Umbrella" parent="World/Clutter" instance=ExtResource("4_w40kj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0286, 7.01995, -22.1069)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0286, 7.8639, -22.1069)
 
 [node name="Umbrella2" parent="World/Clutter" instance=ExtResource("4_w40kj")]
-transform = Transform3D(0.250755, -0.00069784, -0.96805, -0.00247371, 0.999996, -0.00136163, 0.968047, 0.0027361, 0.250752, 10.0959, 7.01995, -21.6282)
+transform = Transform3D(0.250755, -0.00069784, -0.96805, -0.00247371, 0.999996, -0.00136163, 0.968047, 0.0027361, 0.250752, 10.0959, 7.8639, -21.6282)
 
 [node name="Umbrella3" parent="World/Clutter" instance=ExtResource("4_w40kj")]
-transform = Transform3D(0.250755, -0.00069784, -0.96805, -0.00247371, 0.999996, -0.00136163, 0.968047, 0.0027361, 0.250752, 1.49123, 7.01995, -18.0557)
+transform = Transform3D(0.250755, -0.00069784, -0.96805, -0.00247371, 0.999996, -0.00136163, 0.968047, 0.0027361, 0.250752, 1.49123, 7.8639, -18.0557)
 
 [node name="Umbrella4" parent="World/Clutter" instance=ExtResource("4_w40kj")]
-transform = Transform3D(0.250755, -0.00069784, -0.96805, -0.00247371, 0.999996, -0.00136163, 0.968047, 0.0027361, 0.250752, 15.8624, 7.01995, -15.9615)
+transform = Transform3D(0.250755, -0.00069784, -0.96805, -0.00247371, 0.999996, -0.00136163, 0.968047, 0.0027361, 0.250752, 15.8624, 7.8639, -15.9615)
 
 [node name="Umbrella5" parent="World/Clutter" instance=ExtResource("4_w40kj")]
-transform = Transform3D(0.250755, -0.00069784, -0.96805, -0.00247371, 0.999996, -0.00136163, 0.968047, 0.0027361, 0.250752, 45.4879, 7.01995, -17.9586)
+transform = Transform3D(0.250755, -0.00069784, -0.96805, -0.00247371, 0.999996, -0.00136163, 0.968047, 0.0027361, 0.250752, 45.4879, 7.8639, -17.9586)
+
+[node name="Great Garbage Patch" type="StaticBody3D" parent="World"]
+transform = Transform3D(98.3292, 0, 0, 0, 98.3292, 0, 0, 0, 98.3292, 0, 0, 350)
+script = ExtResource("5_nmt27")
+
+[node name="Mesh" type="MeshInstance3D" parent="World/Great Garbage Patch"]
+mesh = SubResource("PrismMesh_tm1xa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Great Garbage Patch"]
+shape = SubResource("ConcavePolygonShape3D_yjcsd")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j774a")

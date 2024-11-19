@@ -77,7 +77,7 @@ pressure_coefficient = 400.0
 pinned_points = [131]
 attachments/0/point_index = 131
 attachments/0/spatial_attachment_path = NodePath("../BoneAttachment3D")
-attachments/0/offset = Vector3(0, 1.46942, -0.056941)
+attachments/0/offset = Vector3(0, 0, 0)
 
 [node name="GrabArea" type="Area3D" parent="RigidBody3D" groups=["Grabbable"]]
 
