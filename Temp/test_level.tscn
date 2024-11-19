@@ -34,4 +34,29 @@ environment = SubResource("Environment_qrv6m")
 transform = Transform3D(0.907777, 0.216034, -0.359541, 0, 0.857167, 0.515038, 0.419452, -0.46754, 0.778117, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Trash Bag" parent="." instance=ExtResource("2_tvps3")]
+[node name="TrashBag" parent="." instance=ExtResource("2_sew3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.31126, 2.75642, -1.23861)
+
+[node name="TrashBag2" parent="." instance=ExtResource("2_sew3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.31126, 5.75642, -1.23861)
+
+[node name="TrashBag3" parent="." instance=ExtResource("2_sew3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.31126, 8.38542, -1.23861)
+
+[node name="TrashBag4" parent="." instance=ExtResource("2_sew3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.31126, 2.75642, 1.66005)
+
+[node name="TrashBag5" parent="." instance=ExtResource("2_sew3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.31126, 5.75642, 1.66005)
+
+[node name="TrashBag6" parent="." instance=ExtResource("2_sew3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.31126, 8.38542, 1.66005)
+
+[node name="TrashBag7" parent="." instance=ExtResource("2_sew3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88748, 2.75642, -0.144852)
+
+[node name="TrashBag8" parent="." instance=ExtResource("2_sew3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88748, 5.75642, -0.144852)
+
+[node name="TrashBag9" parent="." instance=ExtResource("2_sew3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88748, 8.38542, -0.144852)

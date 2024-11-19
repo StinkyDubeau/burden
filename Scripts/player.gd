@@ -16,6 +16,9 @@ const CAMERA_ROTATE_ACCEL = 1.0
 const CAMERA_ROTATE_SPEED_MAX = 0.1
 const GRAVITY_SPEED = 50.0
 const GRAVITY_MAX = -60.0
+const BASE_REFERENCE_MASS = 4.0
+const GRAB_STRENGTH = 10.0
+const THROW_STRENGTH = 50.0
 
 ## Settings
 var DEADZONES = 0.1
@@ -32,8 +35,8 @@ var grab_input : set = grab_or_throw
 @onready var actorMove = $ActorModules/ActorMove
 @onready var cameraPivot = $CameraPivot
 @onready var camera = $CameraPivot/Camera3D
-@onready var grabArea = $GrabArea
-@onready var meshInstance = $GrabArea/CollisionShape3D/MeshInstance3D
+@onready var grabArea = $CameraPivot/GrabArea
+@onready var throwDir = $CameraPivot/ThrowDir
 
 ## Function Initialization
 
@@ -86,9 +89,24 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	## Move grabbed object
+	## Hold Grabbed object
 	if not grabbed_object == null:
-		grabbed_object.apply_central_impulse(grabbed_object.global_transform.origin.direction_to(global_transform.origin) * grabbed_object.global_transform.origin.distance_to(global_transform.origin))
+		## Get object center
+		var grabbed_object_center = grabbed_object.global_transform.origin
+		
+		## Get distance
+		var grab_distance = grabbed_object_center.distance_to(grabArea.global_transform.origin)
+		
+		## Get grab strength
+		var grab_strength = (GRAB_STRENGTH * grab_distance) * (grabbed_object.mass / BASE_REFERENCE_MASS)
+		
+		## Get grab vector
+		var grab_direction = grabbed_object_center.direction_to(grabArea.global_transform.origin)
+		var grab_vector = grab_direction * Vector3(grab_strength,grab_strength,grab_strength)
+		
+		## Move grabbed object to player
+		grabbed_object.apply_central_impulse(-grabbed_object.linear_velocity)
+		grabbed_object.apply_central_impulse(grab_vector)
 	
 ## Handle other movement types
 func _process(delta: float) -> void:
@@ -100,19 +118,16 @@ func _process(delta: float) -> void:
 ## A grab input has been detected, grab and or throw our object
 func grab_or_throw(state):
 	if not state == grab_input:
-		if grabArea.has_overlapping_areas():
-			for area in grabArea.get_overlapping_areas():
-				if area.is_in_group("Grabbable"):
-					grabbed_object = area.get_node("../")
-					break
+		if state:
+			if grabArea.has_overlapping_areas():
+				for area in grabArea.get_overlapping_areas():
+					if area.is_in_group("Grabbable"):
+						grabbed_object = area.get_node("../")
+		else:
+			## Throw object
+			if not grabbed_object == null:
+				var throw_direction = global_transform.origin.direction_to(throwDir.global_transform.origin)
+				grabbed_object.apply_central_impulse(throw_direction * (THROW_STRENGTH * (grabbed_object.mass / BASE_REFERENCE_MASS)))
+			grabbed_object = null
 		
 		grab_input = state
-	
-	if grab_input:
-		meshInstance.scale.x = 0.5
-		meshInstance.scale.y = 0.5
-		meshInstance.scale.z = 0.5
-	else:
-		meshInstance.scale.x = 1.0
-		meshInstance.scale.y = 1.0
-		meshInstance.scale.z = 1.0
