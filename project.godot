@@ -23,6 +23,10 @@ GameFunctions="*res://Scripts/game_functions.gd"
 
 project/assembly_name="Burden"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [global_group]
 
 Grabbable=""
