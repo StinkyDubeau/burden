@@ -5,4 +5,4 @@ extends Area3D
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not parent == null:
-		global_transform.origin = parent.get_point_transform(0)
+		global_transform.origin = parent.get_point_transform(131)
