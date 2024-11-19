@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmcbstvmu7rwb"]
+[gd_scene load_steps=10 format=3 uid="uid://bmcbstvmu7rwb"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_u0xdq"]
 [ext_resource type="PackedScene" uid="uid://b8g7c0cga221g" path="res://Actors/Actor Modules/actor_move.tscn" id="2_lqpxy"]
+[ext_resource type="Script" path="res://Scripts/C#/MouseHandler.cs" id="3_cck76"]
+[ext_resource type="SphereMesh" uid="uid://cqtt01kl7bqqg" path="res://Materials/PlayerCursor.tres" id="4_wvudy"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bqkco"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r144e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqasq"]
+albedo_color = Color(0.0941176, 0.2, 1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dauc7"]
 
@@ -26,12 +31,23 @@ mesh = SubResource("CapsuleMesh_bqkco")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_r144e")
 
-[node name="CameraPivot" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="CameraPivot" type="RayCast3D" parent="." node_paths=PackedStringArray("cursor3D")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.010251, 1.0153, -0.0078373)
+script = ExtResource("3_cck76")
+cursor3D = NodePath("Cursor3D")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.839326, 0.543629, 0, -0.543629, 0.839326, 0, 2.24461, 2.73322)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -9.83477e-07, 7.85456, 9.1264)
+projection = 1
 current = true
+fov = 111.638
+size = 15.5547
+
+[node name="Cursor3D" type="Node3D" parent="CameraPivot"]
+
+[node name="Mesh" type="MeshInstance3D" parent="CameraPivot/Cursor3D"]
+mesh = ExtResource("4_wvudy")
+surface_material_override/0 = SubResource("StandardMaterial3D_jqasq")
 
 [node name="GrabArea" type="Area3D" parent="CameraPivot"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1, 0)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc4s0yy4lbbyo"]
+
+[ext_resource type="PackedScene" uid="uid://msvuy7yhkfbd" path="res://Meshes/Props/BeerBottle.glb" id="1_o65e6"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_d6lud"]
+height = 1.31099
+radius = 0.348711
+
+[node name="Beer Bottle" type="RigidBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -4.27965, 6.17965, 0)
+
+[node name="BeerBottle" parent="." instance=ExtResource("1_o65e6")]
+transform = Transform3D(0.00988546, 3.31228, 0, -3.31228, 0.00988546, 0, 0, 0, 3.31229, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1.26326e-07, 2.89, -1.26326e-07, 0, -1.26326e-07, -2.89, -2.89, -1.26326e-07, 5.52188e-15, 0.15943, -5.23943e-08, -5.23943e-08)
+shape = SubResource("CylinderShape3D_d6lud")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1.52333e-07, 3.48497, -1.52333e-07, 0, -1.52333e-07, -3.48497, -3.48497, -1.52333e-07, 6.65868e-15, -2.607, -0.0395279, 0.0269101)
+shape = SubResource("CylinderShape3D_d6lud")
