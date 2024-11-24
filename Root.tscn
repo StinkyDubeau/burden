@@ -1,19 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://cj4hrpqs2ppra"]
+[gd_scene load_steps=15 format=3 uid="uid://cj4hrpqs2ppra"]
 
 [ext_resource type="PackedScene" uid="uid://bmcbstvmu7rwb" path="res://Actors/player.tscn" id="1_lhm6f"]
-[ext_resource type="Material" uid="uid://d4lk6hkdpljah" path="res://Materials/Sand.tres" id="1_tvlgj"]
+[ext_resource type="PackedScene" uid="uid://yqx4l6kywlti" path="res://Prefabs/beach_surface_3d.tscn" id="2_lb6q5"]
 [ext_resource type="PackedScene" uid="uid://vsfwdm7i1c30" path="res://Prefabs/Clutter/shell.tscn" id="3_6l0lf"]
 [ext_resource type="PackedScene" uid="uid://h04numocjurh" path="res://Prefabs/Clutter/umbrella.tscn" id="4_w40kj"]
 [ext_resource type="PackedScene" uid="uid://bc4s0yy4lbbyo" path="res://Prefabs/Clutter/beer_bottle.tscn" id="5_k08qj"]
 [ext_resource type="Script" path="res://Scripts/C#/GreatGarbagePatch.cs" id="5_nmt27"]
-[ext_resource type="PackedScene" uid="uid://bofpy8igng50d" path="res://Prefabs/trash_bag.tscn" id="6_2gmm8"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_qoygi"]
-material = ExtResource("1_tvlgj")
-size = Vector2(30, 5)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xcn5j"]
-data = PackedVector3Array(15, 0, 2.5, -15, 0, 2.5, 15, 0, -2.5, -15, 0, 2.5, -15, 0, -2.5, 15, 0, -2.5)
+[ext_resource type="PackedScene" uid="uid://bm7tn83yp6vay" path="res://Prefabs/trash_bag.tscn" id="6_2gmm8"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_syxty"]
 
@@ -45,16 +38,7 @@ transform = Transform3D(0.688405, 0.417346, -0.593229, 0, 0.817879, 0.575391, 0.
 [node name="Player" parent="World" instance=ExtResource("1_lhm6f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0385513, 0.564147, 0.00110483)
 
-[node name="Beach" type="StaticBody3D" parent="World"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.049, 0, -0.029)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Beach"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.673977, 0, 0, -0.930028)
-mesh = SubResource("PlaneMesh_qoygi")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="World/Beach"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.673977, 0, 0, -0.930028)
-shape = SubResource("ConcavePolygonShape3D_xcn5j")
+[node name="BeachSurface3D" parent="World" instance=ExtResource("2_lb6q5")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World"]
 
@@ -137,3 +121,6 @@ camera_attributes = SubResource("CameraAttributesPractical_fx2fp")
 
 [node name="Trash Bag" parent="." instance=ExtResource("6_2gmm8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91064, 0.872532, 5.31131)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

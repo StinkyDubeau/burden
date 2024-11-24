@@ -42,6 +42,7 @@ projection = 1
 current = true
 fov = 111.638
 size = 15.5547
+near = 0.001
 
 [node name="Cursor3D" type="Node3D" parent="CameraPivot"]
 

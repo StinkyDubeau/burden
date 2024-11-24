@@ -54,7 +54,19 @@ public partial class MouseHandler : RayCast3D
 			// Extract the Vector3 position from the intersection definition, and assign it to our cursor position
 			CursorPosition = (Vector3)intersections["position"];
 		}
+	}
 
-		// TODO: Add scroll-wheel control of orthographic camera size.
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		base._UnhandledInput(@event);
+		if (@event is InputEventMouseButton)
+		{
+			InputEventMouseButton emb = (InputEventMouseButton)@event;
+
+			if (emb.IsPressed())
+			{
+				GD.Print("my god");
+			}
+		}
 	}
 }
