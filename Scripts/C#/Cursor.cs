@@ -15,6 +15,7 @@ public partial class Cursor : Area3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// Broadcast the current mouse position
 	}
 
 	public override void _Input(InputEvent @event)

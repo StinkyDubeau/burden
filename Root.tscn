@@ -121,6 +121,9 @@ camera_attributes = SubResource("CameraAttributesPractical_fx2fp")
 
 [node name="Trash Bag" parent="." instance=ExtResource("6_2gmm8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91064, 0.872532, 5.31131)
+contact_monitor = true
+max_contacts_reported = 5
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.498
 autostart = true

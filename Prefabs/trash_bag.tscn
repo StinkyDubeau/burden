@@ -1,4 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://bm7tn83yp6vay"]
+[gd_scene load_steps=9 format=4 uid="uid://bm7tn83yp6vay"]
+
+[ext_resource type="Script" path="res://Scripts/C#/TrashBagGrabArea.cs" id="1_4kwvr"]
+[ext_resource type="Script" path="res://Scripts/C#/TrashBag.cs" id="1_r1yt8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wy7a"]
 albedo_color = Color(0, 0, 0, 1)
@@ -32,8 +35,10 @@ size = Vector3(0.76, 1.01617, 1.26)
 [sub_resource type="SphereShape3D" id="SphereShape3D_525jd"]
 radius = 2.0
 
-[node name="TrashBag" type="RigidBody3D"]
+[node name="TrashBag" type="RigidBody3D" node_paths=PackedStringArray("_grabArea")]
 mass = 100.0
+script = ExtResource("1_r1yt8")
+_grabArea = NodePath("GrabArea")
 
 [node name="SoftBody3D" type="SoftBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125951, -1.19209e-07, 0.00996542)
@@ -107,6 +112,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0144835, 0)
 shape = SubResource("BoxShape3D_5yp53")
 
 [node name="GrabArea" type="Area3D" parent="." groups=["Grabbable"]]
+script = ExtResource("1_4kwvr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea" groups=["Grabbable"]]
 shape = SubResource("SphereShape3D_525jd")
+
+[node name="HoverHeight3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)

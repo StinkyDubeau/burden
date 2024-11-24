@@ -55,18 +55,4 @@ public partial class MouseHandler : RayCast3D
 			CursorPosition = (Vector3)intersections["position"];
 		}
 	}
-
-	public override void _UnhandledInput(InputEvent @event)
-	{
-		base._UnhandledInput(@event);
-		if (@event is InputEventMouseButton)
-		{
-			InputEventMouseButton emb = (InputEventMouseButton)@event;
-
-			if (emb.IsPressed())
-			{
-				GD.Print("my god");
-			}
-		}
-	}
 }
